@@ -3,6 +3,16 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
 const path = require('path');
+
+
+
+
+
+
+
+
+
+
 const app = express();
 app.set('view engine', 'pug');
 app.use(fileUpload({
@@ -16,7 +26,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/download', (req, res) => {
-    res.download(path.join(__dirname, 'public', 'output.wav'));
+    res.download(path.join(__dirname, 'output', 'output.wav'));
 });
 
 
@@ -37,17 +47,18 @@ function convert(input, output, callback) {
 }
 
 
+
 app.post('/', (req, res) => {
     
     if (!req.files || Object.keys(req.files).length === 0) {
         return res.status(400).send('No files were uploaded.');
     }
 
-    let targetFile = req.files.target_file;
+    let targetFile = req.files.myFile;
     let extName = path.extname(targetFile.name);
     let baseName = path.basename(targetFile.name, extName);
     let uploadDir = path.join(__dirname, 'uploads', targetFile.name);
-
+    let outputfile = path.join(__dirname, 'output', 'output.wav');
     let csv = ['.mp3', '.wav', '.m4a', '.mp4'];
     // Checking the file type
     if(!csv.includes(extName)){
@@ -72,20 +83,43 @@ app.post('/', (req, res) => {
                 return res.status(500).send(err);
 
             
-            convert(uploadDir, path.join(__dirname, 'public', 'output.wav'), function(err){
+            convert(uploadDir, outputfile, function(err){
                if(!err) {
                    console.log('conversion complete');
                    //...
             
+                  
+                   fs.unlink(uploadDir, function(err){
+                    if (err) console.log(err);
+                    console.log('file successfully deleted' + outputfile);
+                    
+                    
+                   })
+                  
+
+
+
                }
 
-               
 
 
             })
-            res.render('download');
-    });
+    
+    
   
+
+        
+    });
+
+    
+
+    
+    
+
+
+
+
+
 });
 
 app.listen(3000, () => console.log('Your app listening on port 3000'));

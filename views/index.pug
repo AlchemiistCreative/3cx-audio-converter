@@ -1,14 +1,46 @@
 doctype html
 head
-  link(href='css/style.css' rel='stylesheet')
+ 
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  //link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
+  link(rel="stylesheet", href="css/bootstrap.min.css")
   title 3cx Converter
 
-.container
-  h1 3cx Converter 
-  h2 Upload
-  form(action='' method='POST' enctype='multipart/form-data')
-    input(type='file' name='target_file' required='')
-    input(type='submit' value='Upload')
 
+
+
+
+
+
+
+
+
+  div.container
+    div.row
+      div.span12
+        form(method='POST', action='/' enctype='multipart/form-data')
+          legend express-upload-progress
+          input(type='file', name='myFile', id='myFile')
+          p
+          div.form-actions
+            input.btn.btn-primary(type='submit', value='Upload')
+    hr
+    div.row
+      div.span12
+        div.progress.progress-striped.active.hide
+          div.bar(style='width: 0%')
+    div.row
+      div.span12
+        div.alert.hide
+          button.close(type='button', data-dismiss='alert') x
+          span
+            strong.message
+
+
+
+
+
+
+script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+script(src="js/upload.js")
