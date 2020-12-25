@@ -5,7 +5,15 @@ $(function() {
       $('strong.message').text(message);
       $('div.alert').show();
     };
-    
+
+    var showDownload = function() {
+      $('div.progress').hide();
+      $('a.btn.btn-primary').show();
+      $('hr').show();
+    };
+
+
+    var isReady
     $('input[type="submit"]').on('click', function(evt) {
       evt.preventDefault();
       $('div.progress').show();
@@ -24,6 +32,15 @@ $(function() {
         }
       };
       
+      xhr.upload.onloadend = function() {
+        console.log("end");
+        showDownload();
+
+      }
+
+
+
+
       xhr.onerror = function(e) {
         showInfo('An error occurred while submitting the form. Maybe your file is too big');
       };
@@ -33,7 +50,8 @@ $(function() {
       };
       
       xhr.send(formData);
-      
+
+
     });
     
   });

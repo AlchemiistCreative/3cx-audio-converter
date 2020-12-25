@@ -20,23 +20,27 @@ head
     div.row
       div.span12
         form(method='POST', action='/' enctype='multipart/form-data')
-          legend express-upload-progress
+          legend 3cx Converter - 8khz PCM 16 bit signed wav
           input(type='file', name='myFile', id='myFile')
           p
           div.form-actions
             input.btn.btn-primary(type='submit', value='Upload')
+            hr.hide
+            a.btn.btn-primary.hide(href="/download") Download  
     hr
     div.row
       div.span12
         div.progress.progress-striped.active.hide
           div.bar(style='width: 0%')
     div.row
-      div.span12
+      div.span12   
         div.alert.hide
+         
           button.close(type='button', data-dismiss='alert') x
           span
             strong.message
-
+       
+       
 
 
 
