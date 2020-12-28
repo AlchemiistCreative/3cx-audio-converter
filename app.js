@@ -62,12 +62,7 @@ app.post('/', (req, res) => {
         return res.status(422).send("Invalid Image");
     }
 
-    // if(targetFile.size > 10485760){
-    //     fs.unlinkSync(targetFile.tempFilePath);
-    //     return res.status(413).send("File is too Large");
-    // }
 
- 
     while(fs.existsSync(uploadDir)){
         filename = baseName + '-' + num + extName 
         uploadDir = path.join(__dirname, 'uploads', baseName + '-' + num + extName );
