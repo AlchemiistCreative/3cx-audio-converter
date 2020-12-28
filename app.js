@@ -84,11 +84,6 @@ app.post('/', (req, res) => {
                    console.log('conversion complete');
                    //...
 
-                   fs.unlink(uploadDir, function(err){
-                    if (err) console.log(err);
-                    console.log('file successfully deleted' + outputfile);
-                   
-                   })
                }
             })
         
