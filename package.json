@@ -1,0 +1,27 @@
+{
+  "name": "3cx-audio-converter",
+  "version": "1.0.0",
+  "description": "Convert any audio file to PCM 16 bit signed wav (8khz).",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-progressbar": "^2.0.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "pug": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlchemiistCreative/3cx-audio-converter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlchemiistCreative/3cx-audio-converter/issues"
+  },
+  "homepage": "https://github.com/AlchemiistCreative/3cx-audio-converter#readme"
+}
