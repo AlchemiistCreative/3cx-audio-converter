@@ -17,10 +17,10 @@ app.get('/', (req, res) => {
 app.get('/download', (req, res) => {
     let outputfile = path.join(__dirname, 'public', 'output.wav'); 
     res.download(outputfile, function(err){
-        fs.unlink(outputfile, function(err){
-            if (err) console.log(err);
-            console.log('file successfully deleted');
-           })
+        // fs.unlink(outputfile, function(err){
+        //     if (err) console.log(err);
+        //     console.log('file successfully deleted');
+        //    })
      })
 
 
