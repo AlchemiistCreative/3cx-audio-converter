@@ -5,6 +5,16 @@ const fs = require('fs');
 const path = require('path');
 
 
+
+var dir = './upload';
+
+
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
+
+
 const app = express();
 app.set('view engine', 'pug');
 app.use(fileUpload());
@@ -13,6 +23,8 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.render('index');
 });
+
+
 
 app.get('/download', (req, res) => {
     let outputfile = path.join(__dirname, 'public', 'output.wav'); 
