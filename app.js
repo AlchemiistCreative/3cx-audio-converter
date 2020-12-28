@@ -6,7 +6,7 @@ const path = require('path');
 
 
 
-var dir = './upload';
+var dir = './uploads';
 
 
 
