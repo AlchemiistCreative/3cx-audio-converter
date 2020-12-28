@@ -7,13 +7,17 @@ const path = require('path');
 
 
 var dir = './uploads';
-
+var filename = './public/output.wav'
 
 
 if (!fs.existsSync(dir)){
     fs.mkdirSync(dir);
 }
 
+fs.writeFileSync(filename, function (err) {
+    if (err) throw err;
+    console.log("file created");
+});
 
 const app = express();
 app.set('view engine', 'pug');
@@ -29,10 +33,10 @@ app.get('/', (req, res) => {
 app.get('/download', (req, res) => {
     let outputfile = path.join(__dirname, 'public', 'output.wav'); 
     res.download(outputfile, function(err){
-        // fs.unlink(outputfile, function(err){
-        //     if (err) console.log(err);
-        //     console.log('file successfully deleted');
-        //    })
+        fs.unlink(outputfile, function(err){
+             if (err) console.log(err);
+             console.log('file successfully deleted');
+         })
      })
 
 
@@ -89,7 +93,10 @@ app.post('/', (req, res) => {
             convert(uploadDir, outputfile, function(err){
                if(!err) {
                    console.log('conversion complete');
-                   //...
+                   fs.unlink(uploadDir, function(err){
+                    if (err) console.log(err);
+                    console.log('file successfully deleted');
+                })
 
                }
             })
@@ -98,7 +105,7 @@ app.post('/', (req, res) => {
 
 });
 
-app.listen(process.env.PORT || 3000, () => console.log('listening on port 80'));
+app.listen(3000, () => console.log('listening on port 3000'));
 
 
 
